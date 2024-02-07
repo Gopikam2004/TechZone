@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suggested Crops</title>
+    <style>
+        h2{
+            font-size: xx-large;
+            text-align: center;
+        }
+        #cropSuggestions a {
+            font-size:xx-large;
+        
+        }
+        #cropSuggestions a {
+        
+            text-align: center;
+        }
+        #cropSuggestions ul {
+            margin: 0;
+            padding-right: 2000;
+            list-style-type: none;
+        }
+
+      
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Suggested Crops</h2>
+
+        <div id="cropSuggestions">
+            <!-- Crop suggestions will be displayed here -->
+        </div>
+        
+
+        <script>
+            // Function to retrieve query parameters from URL
+            function getQueryParameter(name) {
+                const urlParams = new URLSearchParams(window.location.search);
+                return urlParams.get(name);
+            }
+
+            // Retrieve input values from query parameters
+            const soilType = getQueryParameter('soilType');
+            const pHLevel = getQueryParameter('pHLevel');
+
+            // Example logic to suggest crops based on input values
+            let suggestedCrops = [];
+            if (soilType === 'Red Soil' && pHLevel > 6.5) {
+                suggestedCrops = ['Tomatoes', 'Strawberries', 'Peppers'];
+            } else if (soilType === 'Black Soil' && pHLevel > 7) {
+                suggestedCrops = ['Cotton', 'Wheat', 'Soybeans'];
+            } else if (soilType === 'Sandy Soil' && pHLevel > 6) {
+                suggestedCrops = ['Carrots', 'Radishes', 'Potatoes'];
+            } else {
+                suggestedCrops = ['No specific suggestions based on input'];
+            }
+
+            // Display suggested crops
+            const cropSuggestionsElement = document.getElementById('cropSuggestions');
+            if (suggestedCrops.length > 0) {
+                const list = document.createElement('ul');
+                suggestedCrops.forEach(crop => {
+                    const listItem = document.createElement('li');
+                    const anchor = document.createElement('a');
+                    anchor.textContent = crop;
+                    anchor.href = `crop_description_${crop.toLowerCase()}.html`; // Page URL for crop description
+                    listItem.appendChild(anchor);
+                    list.appendChild(listItem);
+                });
+                cropSuggestionsElement.appendChild(list);
+            } else {
+                cropSuggestionsElement.textContent = 'No crops suggested based on input';
+            }
+        </script>
+    </div>
+</body>
+</html>

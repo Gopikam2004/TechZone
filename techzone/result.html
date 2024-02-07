@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgroGuide - Input Page</title>
+    <style>
+        /* Your CSS styles here */
+    </style>
+</head>
+<body>
+    <div class="input-container">
+        <h2>AgroGuide - Input Page</h2>
+
+        <form id="agroForm">
+            <!-- Your form inputs here -->
+            <button type="button" onclick="submitForm()">Submit</button>
+        </form>
+
+        <script>
+            function submitForm() {
+                // Retrieve values from form
+                const soilType = document.getElementById('soilType').value;
+                const pHLevel = document.getElementById('pHLevel').value;
+                const nitrogenLevel = document.getElementById('nitrogenLevel').value;
+                const phosphorusLevel = document.getElementById('phosphorusLevel').value;
+                const potassiumLevel = document.getElementById('potassiumLevel').value;
+                const calciumLevel = document.getElementById('calciumLevel').value;
+                const magnesiumLevel = document.getElementById('magnesiumLevel').value;
+                const sulfurLevel = document.getElementById('sulfurLevel').value;
+
+                // Construct URL with query parameters
+                const url = `suggested_crops.html?soilType=${encodeURIComponent(soilType)}&pHLevel=${encodeURIComponent(pHLevel)}&nitrogenLevel=${encodeURIComponent(nitrogenLevel)}&phosphorusLevel=${encodeURIComponent(phosphorusLevel)}&potassiumLevel=${encodeURIComponent(potassiumLevel)}&calciumLevel=${encodeURIComponent(calciumLevel)}&magnesiumLevel=${encodeURIComponent(magnesiumLevel)}&sulfurLevel=${encodeURIComponent(sulfurLevel)}`;
+
+                // Navigate to the new page
+                window.location.href = url;
+            }
+        </script>
+    </div>
+</body>
+</html>
